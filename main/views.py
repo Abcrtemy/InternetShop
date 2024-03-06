@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from goods.models import Categories
 
 # Create your views here.
 #alt + shift + down скопировать текущую строку вниз
@@ -8,9 +8,11 @@ from django.shortcuts import render
 
 #представление или контроллер
 def index (request):
+    categories = Categories.objects.all()
     context = {
         'title': 'Home - Главная ',
-        'content' : 'Магазин мебели Home'
+        'content' : 'Магазин мебели Home',
+        'categories' : categories
     }
     return render(request, 'main/index.html',context)
 
